@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Report Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #2980b9, #6dd5fa);
+            color: #333;
+        }
+        .login-container, .report-container {
+            display: none;
+        }
+        .login-container {
+            display: block;
+            background: #fff;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .login-container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .login-container input[type="text"]:focus,
+        .login-container input[type="password"]:focus {
+            outline: none;
+            border-color: #2980b9;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background: #2980b9;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .login-container button:hover {
+            background: #2573a6;
+        }
+        .report-container {
+            position: relative;
+            width: 80%;
+            height: 80%;
+        }
+        .report-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .logout-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            line-height: 18px;
+            width: 30px;
+            height: 30px;
+            transition: background 0.3s;
+        }
+        .logout-icon:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container" id="login-container">
+    <h2>Login to View Report</h2>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="validateLogin()">Login</button>
+</div>
+
+<div class="report-container" id="report-container">
+    <div class="logout-icon" onclick="logout()">&#x2716;</div>
+    <iframe 
+        src="https://app.powerbi.com/view?r=eyJrIjoiNzkxYjcwYTktYjgzNi00M2MzLThiZDMtZjYwYzM4MDE1MTdlIiwidCI6IjY5MWMyMWZhLWQ0YWYtNGFlMi05MzE3LThkZmQ3MTg5OGM4NiJ9" 
+        allowFullScreen="true">
+    </iframe>
+</div>
+
+<script>
+    function validateLogin() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Set the login credentials
+        const validUsername = "Rahul";
+        const validPassword = "302319";
+
+        if (username === validUsername && password === validPassword) {
+            // Hide login and show report if credentials are correct
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("report-container").style.display = "block";
+        } else {
+            alert("Invalid username or password. Please try again.");
+        }
+    }
+
+    function logout() {
+        // Hide report and show login on logout
+        document.getElementById("report-container").style.display = "none";
+        document.getElementById("login-container").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
